@@ -73,29 +73,27 @@ class ContactsViewController: UITableViewController {
                 }
             }
         } else {
-            let queueBackGround = DispatchQueue.global(qos: .background)
-            queueBackGround.async {
-            do {
-                self.contacts = try contactsRepo.getContacts()
-            } catch {
-                let error = error
-                print(error.localizedDescription)
-            }
-            // обновление таблицы только на мэйн потоке
+//            let queueBackGround = DispatchQueue.global(qos: .background)
+//            queueBackGround.async {
+//            do {
+//                self.contacts = try contactsRepo.getContacts()
+//            } catch {
+//                let error = error
+//                print(error.localizedDescription)
+//            }
+//            // обновление таблицы только на мэйн потоке
+//                DispatchQueue.main.async {
+//                    self.tableView.reloadData()
+//                }
+//            }
+            let opQueue = OperationQueue()
+            let myOperation = MyOperation()
+            opQueue.addOperation(myOperation)
+            myOperation.completionBlock = {
+                self.contacts = myOperation.contacts
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
-            }
-        }
-
-        
-        let opQueue = OperationQueue()
-        let myOperation = MyOperation()
-        opQueue.addOperation(myOperation)
-        myOperation.completionBlock = {
-            self.contacts = myOperation.contacts
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
             }
         }
     }
