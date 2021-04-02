@@ -9,8 +9,8 @@ import UIKit
 import ContactsUI
 import Contacts
 
-class ContactDetailViewController: UIViewController {
-    var contact : Contact? = nil
+class ContactDetailViewController: UIViewController, CNContactViewControllerDelegate {
+    var myAppContact : Contact? = nil
     var isDeleted : Bool = false
     var indexPath: IndexPath? = nil
     @IBOutlet weak var contactName: UILabel!
@@ -18,8 +18,8 @@ class ContactDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        contactName.text = contact?.firstName
-        contactNumber.text = contact?.phone
+        contactName.text = myAppContact?.firstName
+        contactNumber.text = myAppContact?.phone
 
     }
     
@@ -27,13 +27,13 @@ class ContactDetailViewController: UIViewController {
 
     @IBAction func doneBack(_ sender: Any) {
         performSegue(withIdentifier: "unwindToContacts", sender: self)
-        NotificationCenter.default.post(name: Notification.Name("editContact"), object: contact)
+        NotificationCenter.default.post(name: Notification.Name("editContact"), object: myAppContact)
     }
     
     @IBAction func deleteContact(_ sender: Any) {
         isDeleted = true
         performSegue(withIdentifier: "unwindToContacts", sender: self)
-        NotificationCenter.default.post(name: Notification.Name("deleteContact"), object: contact)
+        NotificationCenter.default.post(name: Notification.Name("deleteContact"), object: myAppContact)
     }
     @IBAction func callContact(_ sender: UIButton) {
         guard let callNumber = contactNumber.text else {return}
@@ -50,7 +50,7 @@ class ContactDetailViewController: UIViewController {
         let hour = calendar.component(.hour, from: callTime)
         let minutes = calendar.component(.minute, from: callTime)
         let time = "\(hour):\(minutes)"
-        let recentCall = RecentCall(contact: contact, time: time)
+        let recentCall = RecentCall(contact: myAppContact, time: time)
         NotificationCenter.default.post(name: Notification.Name("addContact"), object: recentCall)
     }
     
@@ -63,22 +63,30 @@ class ContactDetailViewController: UIViewController {
 //            viewController.contact = self.contact
 //            viewController.indexPath = self.indexPath
             let contact1 = CNMutableContact()
-            contact1.givenName = self.contact?.firstName ?? ""
-            contact1.familyName = self.contact?.lastName ?? ""
-            contact1.emailAddresses = [CNLabeledValue(label: "email", value: NSString(string: contact?.email ?? ""))]
-            
-            let phoneNumber = CNLabeledValue(label: "phone number",
-                                             value: CNPhoneNumber(stringValue: contact?.phone ?? ""))
+            contact1.givenName = self.myAppContact?.firstName ?? ""
+            contact1.familyName = self.myAppContact?.lastName ?? ""
+            contact1.emailAddresses = [CNLabeledValue(label: "email", value: NSString(string: myAppContact?.email ?? ""))]
+            let phoneNumber = CNLabeledValue(label: "phone number", value: CNPhoneNumber(stringValue: myAppContact?.phone ?? ""))
             contact1.phoneNumbers.append(phoneNumber)
-            let store = CNContactStore()
-            let controller = CNContactViewController(forUnknownContact: contact1)
-            controller.contactStore = store
+            
+            let controller = CNContactViewController(for: contact1)
+            controller.contactStore = CNContactStore()
+            controller.title = "Contact"
             controller.allowsEditing = true
             controller.allowsActions = false
-            //controller.delegate = self
+            controller.delegate = self
             let navigationController = UINavigationController(rootViewController: controller)
             self.present(navigationController, animated: true, completion: nil)
         }
+    }
+    func contactViewController(_ viewController: CNContactViewController, didCompleteWith contact: CNContact?) {
+        myAppContact?.firstName = contact?.givenName ?? ""
+        myAppContact?.lastName = contact?.familyName ?? ""
+        //todo не позволяет по-другому вытащить название строчки
+        myAppContact?.email = "\(contact!.emailAddresses[0].value)"
+        myAppContact?.phone = "\(contact!.phoneNumbers[0].value.stringValue)"
+        contactName.text = myAppContact?.firstName
+        contactNumber.text = myAppContact?.phone
     }
     
     
@@ -91,10 +99,10 @@ class ContactDetailViewController: UIViewController {
                 guard let name = viewController.nameTextField.text, let number = viewController.numberTextField.text else {
                     return
                 }
-                contact?.firstName = name
-                contact?.phone = number
-                contactName.text = contact?.firstName
-                contactNumber.text = contact?.phone
+                myAppContact?.firstName = name
+                myAppContact?.phone = number
+                contactName.text = myAppContact?.firstName
+                contactNumber.text = myAppContact?.phone
             default:
                 print("what")
             }

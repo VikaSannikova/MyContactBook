@@ -46,6 +46,7 @@ class AddContactViewController: UIViewController {
         } else if (titleLabel.text == "EDIT"){
             performSegue(withIdentifier: "backToDetailsAndSave", sender: self)
         }
+        
     }
 }
 

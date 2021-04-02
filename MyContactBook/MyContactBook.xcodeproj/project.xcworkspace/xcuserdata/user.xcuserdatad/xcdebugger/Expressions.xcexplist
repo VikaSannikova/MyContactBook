@@ -25,6 +25,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "ContactDetailViewController.contactViewController(_:didCompleteWith:):ContactDetailViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "contact?.phoneNumbers[0].value.stringValue">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "GistConstactsRepository.getContacts():ContactsViewController.swift">
          <PersistentStrings>
             <PersistentString

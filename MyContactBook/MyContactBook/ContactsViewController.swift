@@ -79,40 +79,40 @@ class ContactsViewController: UITableViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let vika = Contact(firstName: "Vika", lastName: "Sannikova", email: "v.sannikova", phone: "88003553535")
-//        contacts.append(vika)
-//
-//        let vika1 = Contact(firstName: "Vika", lastName: "Sannikova", email: "v.sannikova", phone: "88003553535")
-//        contacts.append(vika1)
-//        tableView.reloadData()
+        let vika = Contact(firstName: "Vika", lastName: "Sannikova", email: "v.sannikova", phone: "88003553535")
+        contacts.append(vika)
+
+        let vika1 = Contact(firstName: "Vika", lastName: "Sannikova", email: "v.sannikova", phone: "88003553535")
+        contacts.append(vika1)
+        tableView.reloadData()
         
 //        download()
         let contactsRepo = GistConstactsRepository(path: "https://gist.githubusercontent.com/artgoncharov/d257658423edd46a9ead5f721b837b8c/raw/c38ace33a7c871e4ad3b347fc4cd970bb45561a3/contacts_data.json")
-        if isGCD {
-            let queueBackGround = DispatchQueue.global(qos: .background)
-            queueBackGround.async {
-                do {
-                    self.contacts = try contactsRepo.getContacts()
-                } catch {
-                    let error = error
-                    print(error.localizedDescription)
-                }
-                // обновление таблицы только на мэйн потоке
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            }
-        } else {
-            let opQueue = OperationQueue()
-            let myOperation = MyOperation()
-            opQueue.addOperation(myOperation)
-            myOperation.completionBlock = {
-                self.contacts = myOperation.contacts
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            }
-        }
+//        if isGCD {
+//            let queueBackGround = DispatchQueue.global(qos: .background)
+//            queueBackGround.async {
+//                do {
+//                    self.contacts = try contactsRepo.getContacts()
+//                } catch {
+//                    let error = error
+//                    print(error.localizedDescription)
+//                }
+//                // обновление таблицы только на мэйн потоке
+//                DispatchQueue.main.async {
+//                    self.tableView.reloadData()
+//                }
+//            }
+//        } else {
+//            let opQueue = OperationQueue()
+//            let myOperation = MyOperation()
+//            opQueue.addOperation(myOperation)
+//            myOperation.completionBlock = {
+//                self.contacts = myOperation.contacts
+//                DispatchQueue.main.async {
+//                    self.tableView.reloadData()
+//                }
+//            }
+//        }
     }
     
     // MARK: - Table view data source
@@ -163,7 +163,7 @@ class ContactsViewController: UITableViewController{
                 tableView.reloadData()
             } else {
                 guard let indexPath = viewController.indexPath else { return }
-                contacts[indexPath.row] = viewController.contact!
+                contacts[indexPath.row] = viewController.myAppContact!
                 tableView.reloadData()
             }
         }
@@ -175,7 +175,7 @@ class ContactsViewController: UITableViewController{
             guard let viewController = viewNavigationController.topViewController as? ContactDetailViewController else { return }
             guard let index =  tableView.indexPathForSelectedRow else { return }
             let contact = contacts[index.row]
-            viewController.contact = contact
+            viewController.myAppContact = contact
             viewController.indexPath = index
         }
     }

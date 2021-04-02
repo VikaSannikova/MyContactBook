@@ -57,6 +57,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cKL-7Z-pct" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -404,7 +405,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Hcb-il-REE"/>
-        <segue reference="w6v-69-0UT"/>
+        <segue reference="5ZL-Oi-Bcu"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrowshape.turn.up.forward.fill" catalog="system" width="128" height="106"/>
