@@ -15,6 +15,7 @@
 		CE6BC73C2615240600DE5E5F /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6BC73B2615240600DE5E5F /* ContactsViewController.swift */; };
 		CE6BC7452615E2AF00DE5E5F /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6BC7442615E2AF00DE5E5F /* ContactsUI.framework */; };
 		CE6BC7472615E2B800DE5E5F /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6BC7462615E2B800DE5E5F /* Contacts.framework */; };
+		CE6BC754261743D600DE5E5F /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE6BC753261743D600DE5E5F /* Settings.bundle */; };
 		CEE19BD22615159200A4C8DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE19BD12615159200A4C8DE /* AppDelegate.swift */; };
 		CEE19BD42615159200A4C8DE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE19BD32615159200A4C8DE /* SceneDelegate.swift */; };
 		CEE19BD92615159200A4C8DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEE19BD72615159200A4C8DE /* Main.storyboard */; };
@@ -51,6 +52,7 @@
 		CE6BC73B2615240600DE5E5F /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 		CE6BC7442615E2AF00DE5E5F /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
 		CE6BC7462615E2B800DE5E5F /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
+		CE6BC753261743D600DE5E5F /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		CEE19BCE2615159200A4C8DE /* MyContactBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyContactBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEE19BD12615159200A4C8DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEE19BD32615159200A4C8DE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 		CEE19BC52615159200A4C8DE = {
 			isa = PBXGroup;
 			children = (
+				CE6BC753261743D600DE5E5F /* Settings.bundle */,
 				CEE19BD02615159200A4C8DE /* MyContactBook */,
 				CEE19BE72615159400A4C8DE /* MyContactBookTests */,
 				CEE19BF22615159400A4C8DE /* MyContactBookUITests */,
@@ -265,6 +268,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE6BC754261743D600DE5E5F /* Settings.bundle in Resources */,
 				CEE19BDE2615159400A4C8DE /* LaunchScreen.storyboard in Resources */,
 				CEE19BDB2615159400A4C8DE /* Assets.xcassets in Resources */,
 				CEE19BD92615159200A4C8DE /* Main.storyboard in Resources */,
