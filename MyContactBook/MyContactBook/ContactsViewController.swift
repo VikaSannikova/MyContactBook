@@ -18,34 +18,62 @@ class GistConstactsRepository: ContactsRepository {
     }
     func getContacts() throws -> [Contact] {
         let sem = DispatchSemaphore(value: 0)
-        let url = URL(string: path)
-        let request = URLRequest(url: url!)
+        let url1 = URL(string: path)
+        let request = URLRequest(url: url1!)
         var result: [Contact] = []
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        //        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        //                defer {
+        //                    sem.signal()
+        //                }
+        //                guard let data = data else {
+        //                    return
+        //                }
+        //                do{
+        //                    let postData = try JSONDecoder().decode([Contact].self, from: data)
+        //                    result = postData
+        //                } catch  {
+        //                    let error = error
+        //                    print(error.localizedDescription)
+        //                }
+        //        }
+        
+        let sessionConfig = URLSessionConfiguration.default
+        let session = URLSession(configuration: sessionConfig)
+        let task = session.downloadTask(with: request){(tempLocalUrl, response, error) in
+            if let tempLocalUrl = tempLocalUrl, error == nil {
                 defer {
                     sem.signal()
                 }
-                guard let data = data else {
-                    return
+                let documentsUrl = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
+                let destinationUrl = documentsUrl.appendingPathComponent(url1!.lastPathComponent)
+                if !FileManager().fileExists(atPath: destinationUrl.path){
+                    do {
+                        if FileManager().fileExists(atPath: tempLocalUrl.path) {
+                            try FileManager.default.copyItem(at: tempLocalUrl, to: destinationUrl)
+                        }
+                    } catch {
+                        print(error.localizedDescription)
+                    }
                 }
+                guard let data = try? Data(contentsOf: destinationUrl, options: .mappedIfSafe) else { return }
+                let jsonDecoder = JSONDecoder()
                 do{
-                    let postData = try JSONDecoder().decode([Contact].self, from: data)
-                    result = postData
+                    result = try jsonDecoder.decode([Contact].self, from: data)
                 } catch  {
                     let error = error
                     print(error.localizedDescription)
                 }
+            }
         }
         task.resume()
-        //let timeout: DispatchTime = .now() + .seconds(25)
-        //sem.wait(timeout: timeout)
         sem.wait()
         return result
     }
 }
 
-class ContactsViewController: UITableViewController {
+class ContactsViewController: UITableViewController{
     var contacts : [Contact] = []
+    var jsonURL: URL?
     var isGCD: Bool = false
 
     override func viewDidLoad() {
@@ -57,6 +85,8 @@ class ContactsViewController: UITableViewController {
 //        let vika1 = Contact(firstName: "Vika", lastName: "Sannikova", email: "v.sannikova", phone: "88003553535")
 //        contacts.append(vika1)
 //        tableView.reloadData()
+        
+//        download()
         let contactsRepo = GistConstactsRepository(path: "https://gist.githubusercontent.com/artgoncharov/d257658423edd46a9ead5f721b837b8c/raw/c38ace33a7c871e4ad3b347fc4cd970bb45561a3/contacts_data.json")
         if isGCD {
             let queueBackGround = DispatchQueue.global(qos: .background)
@@ -73,19 +103,6 @@ class ContactsViewController: UITableViewController {
                 }
             }
         } else {
-//            let queueBackGround = DispatchQueue.global(qos: .background)
-//            queueBackGround.async {
-//            do {
-//                self.contacts = try contactsRepo.getContacts()
-//            } catch {
-//                let error = error
-//                print(error.localizedDescription)
-//            }
-//            // обновление таблицы только на мэйн потоке
-//                DispatchQueue.main.async {
-//                    self.tableView.reloadData()
-//                }
-//            }
             let opQueue = OperationQueue()
             let myOperation = MyOperation()
             opQueue.addOperation(myOperation)

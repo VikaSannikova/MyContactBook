@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import ContactsUI
+import Contacts
 
 class ContactDetailViewController: UIViewController {
     var contact : Contact? = nil
@@ -56,10 +58,26 @@ class ContactDetailViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "editContact") {
-            guard let viewController = segue.destination as? AddContactViewController else { return }
-            viewController.titleText = "EDIT"
-            viewController.contact = self.contact
-            viewController.indexPath = self.indexPath
+//            guard let viewController = segue.destination as? AddContactViewController else { return }
+//            viewController.titleText = "EDIT"
+//            viewController.contact = self.contact
+//            viewController.indexPath = self.indexPath
+            let contact1 = CNMutableContact()
+            contact1.givenName = self.contact?.firstName ?? ""
+            contact1.familyName = self.contact?.lastName ?? ""
+            contact1.emailAddresses = [CNLabeledValue(label: "email", value: NSString(string: contact?.email ?? ""))]
+            
+            let phoneNumber = CNLabeledValue(label: "phone number",
+                                             value: CNPhoneNumber(stringValue: contact?.phone ?? ""))
+            contact1.phoneNumbers.append(phoneNumber)
+            let store = CNContactStore()
+            let controller = CNContactViewController(forUnknownContact: contact1)
+            controller.contactStore = store
+            controller.allowsEditing = true
+            controller.allowsActions = false
+            //controller.delegate = self
+            let navigationController = UINavigationController(rootViewController: controller)
+            self.present(navigationController, animated: true, completion: nil)
         }
     }
     

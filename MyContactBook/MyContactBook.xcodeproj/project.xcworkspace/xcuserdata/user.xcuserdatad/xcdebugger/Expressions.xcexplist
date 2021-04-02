@@ -10,5 +10,36 @@
             </PersistentString>
          </PersistentStrings>
       </ContextState>
+      <ContextState
+         contextName = "__pthread_kill:(null)">
+      </ContextState>
+      <ContextState
+         contextName = "ContactsViewController.urlSession(_:downloadTask:didFinishDownloadingTo:):ContactsViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "jsonDecoder.decode([Contact].self, from: data)">
+            </PersistentString>
+            <PersistentString
+               value = "destinationPath.path">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GistConstactsRepository.getContacts():ContactsViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "path">
+            </PersistentString>
+            <PersistentString
+               value = "url">
+            </PersistentString>
+            <PersistentString
+               value = "request">
+            </PersistentString>
+            <PersistentString
+               value = "URL(string: path)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
    </ContextStates>
 </VariablesViewState>

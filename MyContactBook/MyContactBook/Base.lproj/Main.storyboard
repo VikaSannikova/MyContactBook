@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4lp-po-Dna">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -10,28 +11,28 @@
         <!--Contacts-->
         <scene sceneID="JWV-Wt-C5E">
             <objects>
-                <tableViewController id="jJ7-zJ-hfv" customClass="ContactsViewController" customModule="Contacts" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="jJ7-zJ-hfv" customClass="ContactsViewController" customModule="MyContactBook" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="MHc-xT-ETf">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ContactCell" textLabel="ibN-kE-Yzv" detailTextLabel="g5c-qm-BhG" rowHeight="47" style="IBUITableViewCellStyleValue1" id="pxn-FN-7Bn">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="47"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="47"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pxn-FN-7Bn" id="0Ce-UC-YJm">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="47"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="47"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ibN-kE-Yzv">
-                                            <rect key="frame" x="-85" y="-29" width="45" height="92"/>
+                                            <rect key="frame" x="20" y="14" width="33" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="g5c-qm-BhG">
-                                            <rect key="frame" x="-83" y="48" width="12" height="56"/>
+                                            <rect key="frame" x="350" y="14" width="44" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -64,26 +65,26 @@
         <!--Contact Detail View Controller-->
         <scene sceneID="PPY-1S-KO0">
             <objects>
-                <viewController id="6f8-mb-ZRY" customClass="ContactDetailViewController" customModule="Contacts" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="6f8-mb-ZRY" customClass="ContactDetailViewController" customModule="MyContactBook" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zSm-dN-PPd">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="8Nk-yz-QQU">
-                                <rect key="frame" x="10" y="38" width="580" height="122"/>
+                                <rect key="frame" x="10" y="94" width="394" height="122"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bkk-VC-bcH">
-                                        <rect key="frame" x="0.0" y="0.0" width="580" height="42"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="42"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                         <size key="shadowOffset" width="0.0" height="0.0"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wch-UT-saJ">
-                                        <rect key="frame" x="0.0" y="52" width="580" height="70"/>
+                                        <rect key="frame" x="0.0" y="52" width="394" height="70"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone Number" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UMY-6w-nZh">
-                                                <rect key="frame" x="0.0" y="0.0" width="580" height="70"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="394" height="70"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="a3e-1f-nbv"/>
                                                     <constraint firstAttribute="height" constant="70" id="iz5-Gy-v9W"/>
@@ -97,7 +98,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oti-hd-bsF">
-                                <rect key="frame" x="206" y="566" width="121" height="34"/>
+                                <rect key="frame" x="20" y="725" width="121" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="gJM-65-2WM"/>
                                 </constraints>
@@ -110,7 +111,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GLr-Wd-imW">
-                                <rect key="frame" x="480" y="566" width="100" height="34"/>
+                                <rect key="frame" x="294" y="725" width="100" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="3Wm-nD-qZN"/>
                                 </constraints>
@@ -163,16 +164,16 @@
         <!--Add Contact View Controller-->
         <scene sceneID="Wkq-4T-Bbd">
             <objects>
-                <viewController id="9n3-WM-gWk" customClass="AddContactViewController" customModule="Contacts" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="9n3-WM-gWk" customClass="AddContactViewController" customModule="MyContactBook" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Miy-AS-EC4">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="DZp-rG-Law">
-                                <rect key="frame" x="20" y="59" width="560" height="239"/>
+                                <rect key="frame" x="20" y="58.5" width="374" height="239"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADD NEW CONTACT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Jo-QZ-f2G">
-                                        <rect key="frame" x="0.0" y="0.0" width="560" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="wtF-is-xvb"/>
                                         </constraints>
@@ -181,7 +182,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LMI-UJ-sDU">
-                                        <rect key="frame" x="0.0" y="63" width="560" height="50"/>
+                                        <rect key="frame" x="0.0" y="63" width="374" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="aGh-en-XcB"/>
                                         </constraints>
@@ -189,7 +190,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="izH-jy-rdP">
-                                        <rect key="frame" x="0.0" y="126" width="560" height="50"/>
+                                        <rect key="frame" x="0.0" y="126" width="374" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="kBK-MO-4vT"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="kyl-IT-TdD"/>
@@ -198,10 +199,10 @@
                                         <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                     </textField>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="OHp-lW-nPU">
-                                        <rect key="frame" x="0.0" y="189" width="560" height="50"/>
+                                        <rect key="frame" x="0.0" y="189" width="374" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hdy-t4-WKX">
-                                                <rect key="frame" x="0.0" y="0.0" width="278" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="184.5" height="50"/>
                                                 <color key="backgroundColor" systemColor="systemRedColor"/>
                                                 <state key="normal" title="Cancel">
                                                     <color key="titleColor" systemColor="labelColor"/>
@@ -211,7 +212,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fl2-tU-L55">
-                                                <rect key="frame" x="283" y="0.0" width="277" height="50"/>
+                                                <rect key="frame" x="189.5" y="0.0" width="184.5" height="50"/>
                                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
                                                 <state key="normal" title="Done">
                                                     <color key="titleColor" systemColor="labelColor"/>
@@ -275,28 +276,28 @@
         <!--Recent Calls-->
         <scene sceneID="aCJ-i6-cCf">
             <objects>
-                <tableViewController id="VKA-Tk-E1r" customClass="RecentCallsTableViewController" customModule="Contacts" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="VKA-Tk-E1r" customClass="RecentCallsTableViewController" customModule="MyContactBook" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="FKz-b3-VRg">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecentCallCell" textLabel="Cbp-My-xGk" detailTextLabel="GU9-ti-UBN" style="IBUITableViewCellStyleValue1" id="W0h-nn-Y6s">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="W0h-nn-Y6s" id="Nw7-RO-WLl">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Cbp-My-xGk">
-                                            <rect key="frame" x="71" y="15" width="40" height="27"/>
+                                            <rect key="frame" x="20" y="12" width="33" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GU9-ti-UBN">
-                                            <rect key="frame" x="41" y="29" width="2" height="83"/>
+                                            <rect key="frame" x="350" y="12" width="44" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -339,16 +340,16 @@
         <!--Choose Download View Controller-->
         <scene sceneID="ST9-0k-vGn">
             <objects>
-                <viewController id="4lp-po-Dna" customClass="ChooseDownloadViewController" customModule="Contacts" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="4lp-po-Dna" customClass="ChooseDownloadViewController" customModule="MyContactBook" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="enF-EM-xgh">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="t2R-F5-rlN">
-                                <rect key="frame" x="0.0" y="50" width="600" height="60"/>
+                                <rect key="frame" x="0.0" y="94" width="414" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2IM-eo-Zmq">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="30"/>
                                         <state key="normal" title="Dispatch"/>
                                         <connections>
                                             <action selector="clickDispatch:" destination="4lp-po-Dna" eventType="touchUpInside" id="kPB-t4-Jgb"/>
@@ -356,7 +357,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EBk-Gh-igy">
-                                        <rect key="frame" x="0.0" y="30" width="600" height="30"/>
+                                        <rect key="frame" x="0.0" y="30" width="414" height="30"/>
                                         <state key="normal" title="Operation"/>
                                         <connections>
                                             <action selector="clickOperation:" destination="4lp-po-Dna" eventType="touchUpInside" id="5hU-oo-hdh"/>
@@ -403,12 +404,12 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Hcb-il-REE"/>
-        <segue reference="5ZL-Oi-Bcu"/>
+        <segue reference="w6v-69-0UT"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="arrowshape.turn.up.forward.fill" catalog="system" width="32" height="32"/>
-        <image name="list.bullet.rectangle" catalog="system" width="32" height="32"/>
-        <image name="plus" catalog="system" width="32" height="32"/>
+        <image name="arrowshape.turn.up.forward.fill" catalog="system" width="128" height="106"/>
+        <image name="list.bullet.rectangle" catalog="system" width="128" height="93"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
