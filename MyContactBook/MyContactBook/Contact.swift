@@ -8,6 +8,7 @@
 import Foundation
 struct Contact: Codable, Hashable {
     var id: Int = 0
+    var birthday: Date? = nil
     var firstName: String
     var lastName: String
     var email: String
@@ -20,11 +21,12 @@ struct Contact: Codable, Hashable {
         case phone
     }
     
-    init ( firstName: String, lastName: String, email: String, phone: String) {
+    init ( firstName: String, lastName: String, email: String, phone: String, birthday: Date?) {
         self.firstName = firstName
         self.lastName = lastName
         self.email = email
         self.phone = phone
+        self.birthday = birthday
         self.id = self.hashValue
        }
     

@@ -15,12 +15,18 @@ class ContactDetailViewController: UIViewController, CNContactViewControllerDele
     var indexPath: IndexPath? = nil
     @IBOutlet weak var contactName: UILabel!
     @IBOutlet weak var contactNumber: UILabel!
+    @IBOutlet weak var contactBirthdayParty: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         contactName.text = myAppContact?.firstName
         contactNumber.text = myAppContact?.phone
-
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = DateFormatter.Style.medium
+        dateFormatter.timeStyle = DateFormatter.Style.medium
+        if let bitrhday = myAppContact?.birthday  {
+            contactBirthdayParty.text = dateFormatter.string(from: bitrhday)
+        }
     }
     
     //MARK: - Button actions
@@ -62,14 +68,18 @@ class ContactDetailViewController: UIViewController, CNContactViewControllerDele
 //            viewController.titleText = "EDIT"
 //            viewController.contact = self.contact
 //            viewController.indexPath = self.indexPath
-            let contact1 = CNMutableContact()
-            contact1.givenName = self.myAppContact?.firstName ?? ""
-            contact1.familyName = self.myAppContact?.lastName ?? ""
-            contact1.emailAddresses = [CNLabeledValue(label: "email", value: NSString(string: myAppContact?.email ?? ""))]
+            let myCNContact = CNMutableContact()
+            myCNContact.givenName = self.myAppContact?.firstName ?? ""
+            myCNContact.familyName = self.myAppContact?.lastName ?? ""
+            myCNContact.emailAddresses = [CNLabeledValue(label: "email", value: NSString(string: myAppContact?.email ?? ""))]
             let phoneNumber = CNLabeledValue(label: "phone number", value: CNPhoneNumber(stringValue: myAppContact?.phone ?? ""))
-            contact1.phoneNumbers.append(phoneNumber)
+            myCNContact.phoneNumbers.append(phoneNumber)
+//          не отображается в CNContactView в виде даты, решения не нагуглила
+//            if let birthday = myAppContact?.birthday {
+//                myCNContact.birthday = NSCalendar.current.dateComponents([.day, .month, .year ], from: birthday)
+//            }
             
-            let controller = CNContactViewController(for: contact1)
+            let controller = CNContactViewController(for: myCNContact)
             controller.contactStore = CNContactStore()
             controller.title = "Contact"
             controller.allowsEditing = true

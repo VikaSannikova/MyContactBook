@@ -8,6 +8,9 @@
 import UIKit
 import Foundation
 import Dispatch
+import UserNotifications
+
+
 protocol ContactsRepository {
     func getContacts() throws -> [Contact]
 }
@@ -79,39 +82,42 @@ class ContactsViewController: UITableViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let vika = Contact(firstName: "Vika", lastName: "Sannikova", email: "v.sannikova", phone: "88003553535")
-//        contacts.append(vika)
-//        let vika1 = Contact(firstName: "Vika", lastName: "Sannikova", email: "v.sannikova", phone: "88003553535")
-//        contacts.append(vika1)
-//        tableView.reloadData()
         
-//        download()
+        
+        
+        
+        let vika = Contact(firstName: "Vika", lastName: "Sannikova", email: "v.sannikova", phone: "88003553535", birthday: Date?(nil))
+        contacts.append(vika)
+        let vika1 = Contact(firstName: "Vika", lastName: "Sannikova", email: "v.sannikova", phone: "88003553535", birthday: Date?(nil))
+        contacts.append(vika1)
+        tableView.reloadData()
+        
         let contactsRepo = GistConstactsRepository(path: "https://gist.githubusercontent.com/artgoncharov/d257658423edd46a9ead5f721b837b8c/raw/c38ace33a7c871e4ad3b347fc4cd970bb45561a3/contacts_data.json")
-        if isGCD {
-            let queueBackGround = DispatchQueue.global(qos: .background)
-            queueBackGround.async {
-                do {
-                    self.contacts = try contactsRepo.getContacts()
-                } catch {
-                    let error = error
-                    print(error.localizedDescription)
-                }
-                // обновление таблицы только на мэйн потоке
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            }
-        } else {
-            let opQueue = OperationQueue()
-            let myOperation = MyOperation()
-            opQueue.addOperation(myOperation)
-            myOperation.completionBlock = {
-                self.contacts = myOperation.contacts
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            }
-        }
+//        if isGCD {
+//            let queueBackGround = DispatchQueue.global(qos: .background)
+//            queueBackGround.async {
+//                do {
+//                    self.contacts = try contactsRepo.getContacts()
+//                } catch {
+//                    let error = error
+//                    print(error.localizedDescription)
+//                }
+//                // обновление таблицы только на мэйн потоке
+//                DispatchQueue.main.async {
+//                    self.tableView.reloadData()
+//                }
+//            }
+//        } else {
+//            let opQueue = OperationQueue()
+//            let myOperation = MyOperation()
+//            opQueue.addOperation(myOperation)
+//            myOperation.completionBlock = {
+//                self.contacts = myOperation.contacts
+//                DispatchQueue.main.async {
+//                    self.tableView.reloadData()
+//                }
+//            }
+//        }
     }
     
     // MARK: - Table view data source
@@ -141,10 +147,30 @@ class ContactsViewController: UITableViewController{
             case "unwindToContactList":
                 print(123)
             case "unwindToContactListAndSave":
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateStyle = DateFormatter.Style.medium
+                dateFormatter.timeStyle = DateFormatter.Style.medium
                 guard let name = viewController.nameTextField.text, let number = viewController.numberTextField.text else {
                     return
                 }
-                let contact = Contact(firstName: name, lastName: "SMTH", email: "SMTH", phone: number)
+                let birhday = viewController.birthdayPicker.date
+                let contact = Contact(firstName: name, lastName: "", email: "", phone: number, birthday: birhday)
+                let center = UNUserNotificationCenter.current()
+                center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+                        print("Permission granted: \(granted)")
+                    }
+                
+                let content = UNMutableNotificationContent()
+                content.title = "\(name)'s birthday party"
+                content.body = "at \(dateFormatter.string(from: birhday))"
+                content.sound = .default
+                let dateComponents = Calendar.current.dateComponents([.year, .day, .hour, .minute, .second], from: birhday)
+                let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+                let uuidString = UUID().uuidString
+                let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
+                center.add(request) {(error) in
+                    print(error.debugDescription)
+                }
                 if let indexPath = viewController.indexPath {
                     contacts[indexPath.row] = contact
                 } else {
