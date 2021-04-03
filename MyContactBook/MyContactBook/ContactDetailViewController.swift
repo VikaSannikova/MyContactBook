@@ -74,6 +74,7 @@ class ContactDetailViewController: UIViewController, CNContactViewControllerDele
             myCNContact.emailAddresses = [CNLabeledValue(label: "email", value: NSString(string: myAppContact?.email ?? ""))]
             let phoneNumber = CNLabeledValue(label: "phone number", value: CNPhoneNumber(stringValue: myAppContact?.phone ?? ""))
             myCNContact.phoneNumbers.append(phoneNumber)
+            
 //          не отображается в CNContactView в виде даты, решения не нагуглила
 //            if let birthday = myAppContact?.birthday {
 //                myCNContact.birthday = NSCalendar.current.dateComponents([.day, .month, .year ], from: birthday)
@@ -95,6 +96,13 @@ class ContactDetailViewController: UIViewController, CNContactViewControllerDele
         //todo не позволяет по-другому вытащить название строчки
         myAppContact?.email = "\(contact!.emailAddresses[0].value)"
         myAppContact?.phone = "\(contact!.phoneNumbers[0].value.stringValue)"
+        if let bd = contact!.birthday?.date{
+            myAppContact?.birthday = bd
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = DateFormatter.Style.medium
+            dateFormatter.timeStyle = DateFormatter.Style.medium
+            contactBirthdayParty.text = dateFormatter.string(from: bd)
+        }
         contactName.text = myAppContact?.firstName
         contactNumber.text = myAppContact?.phone
     }
