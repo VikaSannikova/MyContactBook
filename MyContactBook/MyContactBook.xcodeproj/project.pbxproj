@@ -16,6 +16,7 @@
 		CE6BC7452615E2AF00DE5E5F /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6BC7442615E2AF00DE5E5F /* ContactsUI.framework */; };
 		CE6BC7472615E2B800DE5E5F /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE6BC7462615E2B800DE5E5F /* Contacts.framework */; };
 		CE6BC754261743D600DE5E5F /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE6BC753261743D600DE5E5F /* Settings.bundle */; };
+		CE6BC7592619AA4F00DE5E5F /* ContactAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6BC7582619AA4F00DE5E5F /* ContactAvatarView.swift */; };
 		CEE19BD22615159200A4C8DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE19BD12615159200A4C8DE /* AppDelegate.swift */; };
 		CEE19BD42615159200A4C8DE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE19BD32615159200A4C8DE /* SceneDelegate.swift */; };
 		CEE19BD92615159200A4C8DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEE19BD72615159200A4C8DE /* Main.storyboard */; };
@@ -53,6 +54,7 @@
 		CE6BC7442615E2AF00DE5E5F /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
 		CE6BC7462615E2B800DE5E5F /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 		CE6BC753261743D600DE5E5F /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		CE6BC7582619AA4F00DE5E5F /* ContactAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactAvatarView.swift; sourceTree = "<group>"; };
 		CEE19BCE2615159200A4C8DE /* MyContactBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyContactBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEE19BD12615159200A4C8DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEE19BD32615159200A4C8DE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				CE6BC72626151F9500DE5E5F /* RecentCallsTableViewController.swift */,
 				CE6BC72B26151FE300DE5E5F /* AddContactViewController.swift */,
 				CE6BC73B2615240600DE5E5F /* ContactsViewController.swift */,
+				CE6BC7582619AA4F00DE5E5F /* ContactAvatarView.swift */,
 			);
 			path = MyContactBook;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				CE6BC72726151F9500DE5E5F /* RecentCallsTableViewController.swift in Sources */,
 				CEE19BD22615159200A4C8DE /* AppDelegate.swift in Sources */,
 				CE6BC71D26151F3700DE5E5F /* Contact.swift in Sources */,
+				CE6BC7592619AA4F00DE5E5F /* ContactAvatarView.swift in Sources */,
 				CEE19BD42615159200A4C8DE /* SceneDelegate.swift in Sources */,
 				CE6BC73C2615240600DE5E5F /* ContactsViewController.swift in Sources */,
 				CE6BC72C26151FE300DE5E5F /* AddContactViewController.swift in Sources */,

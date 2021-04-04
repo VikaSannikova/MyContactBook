@@ -130,10 +130,24 @@
                                     <action selector="callContact:" destination="6f8-mb-ZRY" eventType="touchUpInside" id="PY7-Nx-cex"/>
                                 </connections>
                             </button>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fRN-7q-eyH" customClass="ContactAvatarView" customModule="MyContactBook" customModuleProvider="target">
+                                <rect key="frame" x="145" y="412" width="100" height="100"/>
+                                <viewLayoutGuide key="safeArea" id="zEa-oU-EjA"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="SPT-wU-7LG"/>
+                                    <constraint firstAttribute="height" constant="100" id="lRM-gC-MQs"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="jeE-zw-Zw9" appends="YES" id="Qf5-qA-AKI"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Nko-5z-nig"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="fRN-7q-eyH" firstAttribute="centerX" secondItem="8Nk-yz-QQU" secondAttribute="centerX" id="4q9-5M-V2s"/>
                             <constraint firstItem="oti-hd-bsF" firstAttribute="bottom" secondItem="Nko-5z-nig" secondAttribute="bottom" id="HQ8-sb-HCQ"/>
                             <constraint firstItem="8Nk-yz-QQU" firstAttribute="top" secondItem="Nko-5z-nig" secondAttribute="top" constant="38" id="SPH-fC-RJB"/>
                             <constraint firstItem="GLr-Wd-imW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="oti-hd-bsF" secondAttribute="trailing" constant="8" symbolic="YES" id="YFZ-De-YKa"/>
@@ -143,6 +157,7 @@
                             <constraint firstItem="Nko-5z-nig" firstAttribute="trailing" secondItem="GLr-Wd-imW" secondAttribute="trailing" constant="20" id="hDi-vO-Kaj"/>
                             <constraint firstItem="Nko-5z-nig" firstAttribute="trailing" secondItem="oti-hd-bsF" secondAttribute="trailing" constant="273" id="lny-r0-hiG"/>
                             <constraint firstItem="oti-hd-bsF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Nko-5z-nig" secondAttribute="leading" id="ql0-n4-Tbw"/>
+                            <constraint firstItem="fRN-7q-eyH" firstAttribute="centerY" secondItem="zSm-dN-PPd" secondAttribute="centerY" constant="67" id="rhh-mY-sB2"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="lYa-WX-9XQ">
@@ -158,6 +173,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="contactAvatar" destination="fRN-7q-eyH" id="OGM-Yq-9d1"/>
                         <outlet property="contactBirthdayParty" destination="GQM-0n-ja7" id="JnQ-iq-0rL"/>
                         <outlet property="contactName" destination="bkk-VC-bcH" id="kMm-cQ-60t"/>
                         <outlet property="contactNumber" destination="UMY-6w-nZh" id="JTL-my-9wK"/>
@@ -166,8 +182,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HZk-G9-Hmf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="kIZ-eG-7ri" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="jeE-zw-Zw9">
+                    <connections>
+                        <action selector="tapContactAvatar:" destination="6f8-mb-ZRY" id="pVu-Yc-D1p"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3159" y="414"/>
+            <point key="canvasLocation" x="3158.4615384615386" y="413.74407582938386"/>
         </scene>
         <!--Add Contact View Controller-->
         <scene sceneID="Wkq-4T-Bbd">
@@ -206,7 +227,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                     </textField>
-                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="Mfl-Wv-cJi">
+                                    <datePicker contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="Mfl-Wv-cJi">
                                         <rect key="frame" x="0.0" y="189" width="350" height="216"/>
                                     </datePicker>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="OHp-lW-nPU">

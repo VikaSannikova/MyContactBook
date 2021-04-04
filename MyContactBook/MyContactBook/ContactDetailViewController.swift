@@ -16,6 +16,7 @@ class ContactDetailViewController: UIViewController, CNContactViewControllerDele
     @IBOutlet weak var contactName: UILabel!
     @IBOutlet weak var contactNumber: UILabel!
     @IBOutlet weak var contactBirthdayParty: UILabel!
+    @IBOutlet weak var contactAvatar: ContactAvatarView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,9 +25,12 @@ class ContactDetailViewController: UIViewController, CNContactViewControllerDele
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = DateFormatter.Style.medium
         dateFormatter.timeStyle = DateFormatter.Style.medium
+        contactAvatar.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
         if let bitrhday = myAppContact?.birthday  {
             contactBirthdayParty.text = dateFormatter.string(from: bitrhday)
         }
+        guard let fn = myAppContact?.firstName.character(at: 0), let ln = myAppContact?.lastName.character(at: 0) else { return }
+        contactAvatar.initials = "\(fn.uppercased())\(ln.uppercased())"
     }
     
     //MARK: - Button actions
@@ -59,6 +63,17 @@ class ContactDetailViewController: UIViewController, CNContactViewControllerDele
         let recentCall = RecentCall(contact: myAppContact, time: time)
         NotificationCenter.default.post(name: Notification.Name("addContact"), object: recentCall)
     }
+    @IBAction func tapContactAvatar(_ sender: Any) {
+        UIView.animate(withDuration: 1.0,
+                       delay: 1.0,
+                       options: [],
+                       animations: {
+                        let parentFrame = self.view.frame
+                        let contactAvatarFrame = self.contactAvatar.frame
+                        let tmp = (parentFrame.width-10)/contactAvatarFrame.width
+                        self.contactAvatar.transform = CGAffineTransform(scaleX: tmp, y: tmp)
+                       })
+    }
     
     //MARK: - Navigation
     
@@ -74,11 +89,9 @@ class ContactDetailViewController: UIViewController, CNContactViewControllerDele
             myCNContact.emailAddresses = [CNLabeledValue(label: "email", value: NSString(string: myAppContact?.email ?? ""))]
             let phoneNumber = CNLabeledValue(label: "phone number", value: CNPhoneNumber(stringValue: myAppContact?.phone ?? ""))
             myCNContact.phoneNumbers.append(phoneNumber)
-            
-//          не отображается в CNContactView в виде даты, решения не нагуглила
-//            if let birthday = myAppContact?.birthday {
-//                myCNContact.birthday = NSCalendar.current.dateComponents([.day, .month, .year ], from: birthday)
-//            }
+            if let birthday = myAppContact?.birthday {
+                myCNContact.birthday = NSCalendar.current.dateComponents([.day, .month, .year, .calendar], from: birthday)
+            }
             
             let controller = CNContactViewController(for: myCNContact)
             controller.contactStore = CNContactStore()
@@ -125,6 +138,21 @@ class ContactDetailViewController: UIViewController, CNContactViewControllerDele
                 print("what")
             }
         }
+    }
+}
+
+extension String {
+ 
+    func index(at position: Int, from start: Index? = nil) -> Index? {
+        let startingIndex = start ?? startIndex
+        return index(startingIndex, offsetBy: position, limitedBy: endIndex)
+    }
+ 
+    func character(at position: Int) -> Character? {
+        guard position >= 0, let indexPosition = index(at: position) else {
+            return nil
+        }
+        return self[indexPosition]
     }
 }
 
