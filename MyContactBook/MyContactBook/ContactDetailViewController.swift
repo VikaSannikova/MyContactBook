@@ -13,14 +13,16 @@ class ContactDetailViewController: UIViewController, CNContactViewControllerDele
     var myAppContact : Contact? = nil
     var isDeleted : Bool = false
     var indexPath: IndexPath? = nil
-    @IBOutlet weak var contactName: UILabel!
+    @IBOutlet weak var contactFirstName: UILabel!
+    @IBOutlet weak var contactLastName: UILabel!
     @IBOutlet weak var contactNumber: UILabel!
     @IBOutlet weak var contactBirthdayParty: UILabel!
     @IBOutlet weak var contactAvatar: ContactAvatarView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        contactName.text = myAppContact?.firstName
+        contactFirstName.text = myAppContact?.firstName
+        contactLastName.text = myAppContact?.lastName
         contactNumber.text = myAppContact?.phone
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = DateFormatter.Style.medium
@@ -116,7 +118,7 @@ class ContactDetailViewController: UIViewController, CNContactViewControllerDele
             dateFormatter.timeStyle = DateFormatter.Style.medium
             contactBirthdayParty.text = dateFormatter.string(from: bd)
         }
-        contactName.text = myAppContact?.firstName
+        contactFirstName.text = myAppContact?.firstName
         contactNumber.text = myAppContact?.phone
     }
     
@@ -127,12 +129,14 @@ class ContactDetailViewController: UIViewController, CNContactViewControllerDele
             case "backToDetails":
                 print(123)
             case "backToDetailsAndSave":
-                guard let name = viewController.nameTextField.text, let number = viewController.numberTextField.text else {
+                guard let firstName = viewController.firstNameTextField.text,let lastName = viewController.lastNameTextField.text, let number = viewController.numberTextField.text else {
                     return
                 }
-                myAppContact?.firstName = name
+                myAppContact?.firstName = firstName
+                myAppContact?.lastName = lastName
                 myAppContact?.phone = number
-                contactName.text = myAppContact?.firstName
+                contactFirstName.text = myAppContact?.firstName
+                contactLastName.text = myAppContact?.lastName
                 contactNumber.text = myAppContact?.phone
             default:
                 print("what")

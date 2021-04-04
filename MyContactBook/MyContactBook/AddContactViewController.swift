@@ -16,7 +16,8 @@ class AddContactViewController: UIViewController {
     var indexPath: IndexPath? = nil
 
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var firstNameTextField: UITextField!
+    @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var numberTextField: UITextField!
     @IBOutlet weak var birthdayPicker: UIDatePicker!
     @IBOutlet weak var cancelButton: UIButton!
@@ -26,14 +27,16 @@ class AddContactViewController: UIViewController {
         super.viewDidLoad()
         titleLabel.text = titleText
         if let editContact = contact {
-            nameTextField.text = editContact.firstName
+            firstNameTextField.text = editContact.firstName
+            lastNameTextField.text = editContact.lastName
             numberTextField.text = editContact.phone
         }
     }
     
     @IBAction func closeCancel(_ sender: UIButton) {
         if (titleLabel.text == "ADD NEW CONTACT") {
-            nameTextField.text = nil
+            firstNameTextField.text = nil
+            lastNameTextField.text = nil
             numberTextField.text = nil
             performSegue(withIdentifier: "unwindToContactList", sender: self)
         } else if (titleLabel.text == "EDIT"){
