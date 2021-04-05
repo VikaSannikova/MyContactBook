@@ -13,19 +13,22 @@ struct Contact: Codable, Hashable {
     var lastName: String
     var email: String
     var phone: String
+    var photoUrl: String?
 
     enum CodingKeys: String, CodingKey {
         case firstName = "firstname"
         case lastName = "lastname"
         case email
         case phone
+        case photoUrl
     }
     
-    init ( firstName: String, lastName: String, email: String, phone: String, birthday: Date?) {
+    init ( firstName: String, lastName: String, email: String, phone: String, photoUrl: String, birthday: Date?) {
         self.firstName = firstName
         self.lastName = lastName
         self.email = email
         self.phone = phone
+        self.photoUrl = photoUrl
         self.birthday = birthday
         self.id = self.hashValue
        }

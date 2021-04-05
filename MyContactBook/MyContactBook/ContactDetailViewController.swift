@@ -8,6 +8,7 @@
 import UIKit
 import ContactsUI
 import Contacts
+import GIFImageView
 
 class ContactDetailViewController: UIViewController, CNContactViewControllerDelegate {
     var myAppContact : Contact? = nil
@@ -31,8 +32,13 @@ class ContactDetailViewController: UIViewController, CNContactViewControllerDele
         if let bitrhday = myAppContact?.birthday  {
             contactBirthdayParty.text = dateFormatter.string(from: bitrhday)
         }
-        guard let fn = myAppContact?.firstName.character(at: 0), let ln = myAppContact?.lastName.character(at: 0) else { return }
-        contactAvatar.initials = "\(fn.uppercased())\(ln.uppercased())"
+        if let url = myAppContact?.photoUrl, let image = UIImage.animatedImage(withUrl: url){
+            let backgroundImage = UIImageView(image: image)
+            contactAvatar.insertSubview(backgroundImage, at: 0)
+        } else {
+            guard let fn = myAppContact?.firstName.character(at: 0), let ln = myAppContact?.lastName.character(at: 0) else { return }
+            contactAvatar.initials = "\(fn.uppercased())\(ln.uppercased())"
+        }
     }
     
     //MARK: - Button actions

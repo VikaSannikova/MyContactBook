@@ -24,22 +24,6 @@ class GistConstactsRepository: ContactsRepository {
         let url1 = URL(string: path)
         let request = URLRequest(url: url1!)
         var result: [Contact] = []
-        //        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-        //                defer {
-        //                    sem.signal()
-        //                }
-        //                guard let data = data else {
-        //                    return
-        //                }
-        //                do{
-        //                    let postData = try JSONDecoder().decode([Contact].self, from: data)
-        //                    result = postData
-        //                } catch  {
-        //                    let error = error
-        //                    print(error.localizedDescription)
-        //                }
-        //        }
-        
         let sessionConfig = URLSessionConfiguration.default
         let session = URLSession(configuration: sessionConfig)
         let task = session.downloadTask(with: request){(tempLocalUrl, response, error) in
@@ -82,14 +66,14 @@ class ContactsViewController: UITableViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//
-//        let vika = Contact(firstName: "Vika", lastName: "Sannikova", email: "v.sannikova", phone: "88003553535", birthday: Date?(nil))
+// для ускоренного дебага и запуска приложения
+//        let vika = Contact(firstName: "Vika", lastName: "Sannikova", email: "v.sannikova", phone: "88003553535", photoUrl: "https://media.giphy.com/media/rp64ilsWhDQLkrFv3Y/giphy.gif", birthday: Date?(nil))
 //        contacts.append(vika)
-//        let vika1 = Contact(firstName: "Vika", lastName: "Sannikova", email: "v.sannikova", phone: "88003553535", birthday: Date?(nil))
+//        let vika1 = Contact(firstName: "Vika", lastName: "Sannikova", email: "v.sannikova", phone: "88003553535", photoUrl: "", birthday: Date?(nil))
 //        contacts.append(vika1)
 //        tableView.reloadData()
         
-        let contactsRepo = GistConstactsRepository(path: "https://gist.githubusercontent.com/artgoncharov/d257658423edd46a9ead5f721b837b8c/raw/c38ace33a7c871e4ad3b347fc4cd970bb45561a3/contacts_data.json")
+        let contactsRepo = GistConstactsRepository(path: "https://gist.githubusercontent.com/artgoncharov/61c471db550238f469ad746a0c3102a7/raw/590dcd89a6aa10662c9667138c99e4b0a8f43c67/contacts_data2.json")
         if isGCD {
             let queueBackGround = DispatchQueue.global(qos: .background)
             queueBackGround.async {
@@ -151,7 +135,7 @@ class ContactsViewController: UITableViewController{
                     return
                 }
                 let birhday = viewController.birthdayPicker.date
-                let contact = Contact(firstName: firstName, lastName: lastName, email: "", phone: number, birthday: birhday)
+                let contact = Contact(firstName: firstName, lastName: lastName, email: "", phone: number, photoUrl: "", birthday: birhday)
                 let center = UNUserNotificationCenter.current()
                 center.requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
                         print("Permission granted: \(granted)")

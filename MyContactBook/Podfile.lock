@@ -1,0 +1,16 @@
+PODS:
+  - GIFImageView (0.1.0)
+
+DEPENDENCIES:
+  - GIFImageView
+
+SPEC REPOS:
+  trunk:
+    - GIFImageView
+
+SPEC CHECKSUMS:
+  GIFImageView: cd6a500b9bac1942cb66b73452b97baa6e75280d
+
+PODFILE CHECKSUM: 72176aefdc428c887249a701f5fb790dba5418a2
+
+COCOAPODS: 1.10.1

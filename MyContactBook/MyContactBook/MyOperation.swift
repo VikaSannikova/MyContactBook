@@ -12,7 +12,7 @@ class MyOperation: Operation {
     var contacts : [Contact] = []
 
     override func main() {
-        let contactsRepo = GistConstactsRepository(path: "https://gist.githubusercontent.com/artgoncharov/d257658423edd46a9ead5f721b837b8c/raw/c38ace33a7c871e4ad3b347fc4cd970bb45561a3/contacts_data.json")
+        let contactsRepo = GistConstactsRepository(path: "https://gist.githubusercontent.com/artgoncharov/61c471db550238f469ad746a0c3102a7/raw/590dcd89a6aa10662c9667138c99e4b0a8f43c67/contacts_data2.json")
         do {
             contacts = try contactsRepo.getContacts()
         } catch {
