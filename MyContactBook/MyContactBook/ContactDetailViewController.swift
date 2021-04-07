@@ -115,9 +115,9 @@ class ContactDetailViewController: UIViewController, CNContactViewControllerDele
         myAppContact?.firstName = contact?.givenName ?? ""
         myAppContact?.lastName = contact?.familyName ?? ""
         //todo не позволяет по-другому вытащить название строчки
-        myAppContact?.email = "\(contact!.emailAddresses[0].value)"
-        myAppContact?.phone = "\(contact!.phoneNumbers[0].value.stringValue)"
-        if let bd = contact!.birthday?.date{
+        myAppContact?.email = "\(contact?.emailAddresses[0].value ?? "")"
+        myAppContact?.phone = "\(contact?.phoneNumbers[0].value.stringValue ?? "")"
+        if let bd = contact?.birthday?.date{
             myAppContact?.birthday = bd
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = DateFormatter.Style.medium

@@ -21,8 +21,8 @@ class GistConstactsRepository: ContactsRepository {
     }
     func getContacts() throws -> [Contact] {
         let sem = DispatchSemaphore(value: 0)
-        let url1 = URL(string: path)
-        let request = URLRequest(url: url1!)
+        guard let url1 = URL(string: path) else {return []}
+        let request = URLRequest(url: url1)
         var result: [Contact] = []
         let sessionConfig = URLSessionConfiguration.default
         let session = URLSession(configuration: sessionConfig)
@@ -31,24 +31,26 @@ class GistConstactsRepository: ContactsRepository {
                 defer {
                     sem.signal()
                 }
-                let documentsUrl = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
-                let destinationUrl = documentsUrl.appendingPathComponent(url1!.lastPathComponent)
-                if !FileManager().fileExists(atPath: destinationUrl.path){
-                    do {
-                        if FileManager().fileExists(atPath: tempLocalUrl.path) {
-                            try FileManager.default.copyItem(at: tempLocalUrl, to: destinationUrl)
+                let documentsUrl = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first
+                
+                if let destinationUrl = documentsUrl?.appendingPathComponent(url1.lastPathComponent) {
+                    if !FileManager().fileExists(atPath: destinationUrl.path){
+                        do {
+                            if FileManager().fileExists(atPath: tempLocalUrl.path) {
+                                try FileManager.default.copyItem(at: tempLocalUrl, to: destinationUrl)
+                            }
+                        } catch {
+                            print(error.localizedDescription)
                         }
-                    } catch {
+                    }
+                    guard let data = try? Data(contentsOf: destinationUrl, options: .mappedIfSafe) else { return }
+                    let jsonDecoder = JSONDecoder()
+                    do{
+                        result = try jsonDecoder.decode([Contact].self, from: data)
+                    } catch  {
+                        let error = error
                         print(error.localizedDescription)
                     }
-                }
-                guard let data = try? Data(contentsOf: destinationUrl, options: .mappedIfSafe) else { return }
-                let jsonDecoder = JSONDecoder()
-                do{
-                    result = try jsonDecoder.decode([Contact].self, from: data)
-                } catch  {
-                    let error = error
-                    print(error.localizedDescription)
                 }
             }
         }
