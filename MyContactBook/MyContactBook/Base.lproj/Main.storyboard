@@ -242,8 +242,11 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                     </textField>
-                                    <datePicker contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="Mfl-Wv-cJi">
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" style="wheels" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mfl-Wv-cJi">
                                         <rect key="frame" x="0.0" y="252" width="350" height="216"/>
+                                        <date key="date" timeIntervalSinceReferenceDate="639487143.42901504">
+                                            <!--2021-04-07 11:19:03 +0000-->
+                                        </date>
                                     </datePicker>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="OHp-lW-nPU">
                                         <rect key="frame" x="0.0" y="480.99999999999994" width="350" height="50.000000000000057"/>
