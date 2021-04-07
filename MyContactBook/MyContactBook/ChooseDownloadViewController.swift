@@ -24,9 +24,9 @@ class ChooseDownloadViewController: UIViewController {
         guard let viewTabBarController = segue.destination as? UITabBarController else { return }
         guard let viewNavigationController = viewTabBarController.customizableViewControllers?[0] as? UINavigationController else { return }
         guard let viewController = viewNavigationController.topViewController as? ContactsViewController else { return }
-        if startPage!.description == "Contact List" {
+        if startPage?.description == "Contact List" {
             viewTabBarController.selectedIndex = 0
-        } else if startPage!.description == "Call History" {
+        } else if startPage?.description == "Call History" {
             viewTabBarController.selectedIndex = 1
         }
         if segue.identifier == "dispatchDownload" {
